@@ -1,0 +1,10 @@
+﻿  Eigenvalue-Calculator.cpp
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.cpp(8): error C2011: 'Polynomial': 'class' type redefinition
+  c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.h(3): note: see declaration of 'Polynomial'
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\eigenvalue-calculator.cpp(25): error C2079: 'poly' uses undefined class 'Polynomial'
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\eigenvalue-calculator.cpp(25): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
+  c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\eigenvalue-calculator.cpp(25): note: The initializer contains too many elements
+  Polynomial.cpp
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.cpp(8): error C2011: 'Polynomial': 'class' type redefinition
+  c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.h(3): note: see declaration of 'Polynomial'
+  Generating Code...
