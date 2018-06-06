@@ -1,7 +1,2 @@
 ﻿  Eigenvalue-Calculator.cpp
-c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.cpp(8): error C2011: 'Polynomial': 'class' type redefinition
-  c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.h(3): note: see declaration of 'Polynomial'
-  Polynomial.cpp
-c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.cpp(8): error C2011: 'Polynomial': 'class' type redefinition
-  c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\polynomial.h(3): note: see declaration of 'Polynomial'
-  Generating Code...
+  Eigenvalue-Calculator.vcxproj -> C:\Users\quinn\source\repos\Eigenvalue-Calculator\Debug\Eigenvalue-Calculator.exe
