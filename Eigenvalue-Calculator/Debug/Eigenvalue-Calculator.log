@@ -1,2 +1,4 @@
 ﻿  Eigenvalue-Calculator.cpp
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\eigenvalue-calculator.cpp(94): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\quinn\source\repos\eigenvalue-calculator\eigenvalue-calculator\eigenvalue-calculator.cpp(107): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Eigenvalue-Calculator.vcxproj -> C:\Users\quinn\source\repos\Eigenvalue-Calculator\Debug\Eigenvalue-Calculator.exe

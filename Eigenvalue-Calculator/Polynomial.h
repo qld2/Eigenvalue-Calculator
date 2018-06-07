@@ -24,6 +24,8 @@ public:
 	double findRoot(double start_point);
 
 	Polynomial& operator + (const Polynomial& p);
+	Polynomial& operator += (const Polynomial& p);
+	Polynomial& operator - (const Polynomial& p);
 	Polynomial& operator * (const Polynomial& p);
 	Polynomial& operator * (double scalar);
 	

@@ -144,6 +144,33 @@ Polynomial& Polynomial::operator + (const Polynomial& p) {
 	Polynomial* p2 = new Polynomial(termCount + pTermCount, rCoeffs, rPowers);
 	return (*p2);
 }
+
+Polynomial& Polynomial::operator += (const Polynomial& p) {
+	
+	return *this + p;
+}
+
+Polynomial& Polynomial::operator - (const Polynomial& p) {
+	const int* pCoeffs = p.getCoeffs();
+	const int* pPowers = p.getPowers();
+	const int pTermCount = p.getTermCount();
+
+	int* rCoeffs = new int[termCount + pTermCount];
+	int* rPowers = new int[termCount + pTermCount];
+
+	for (int i = 0; i < termCount; i++) {
+		rCoeffs[i] = coeffs[i];
+		rPowers[i] = powers[i];
+	}
+
+	for (int i = 0; i < pTermCount; i++) {
+		rCoeffs[termCount + i] = (-1) * pCoeffs[i];
+		rPowers[termCount + i] = (-1) * pPowers[i];
+	}
+
+	Polynomial* p2 = new Polynomial(termCount + pTermCount, rCoeffs, rPowers);
+	return (*p2);
+}
 	
 
 Polynomial& Polynomial::operator * (const Polynomial& p) {
@@ -185,7 +212,7 @@ ostream& operator << (ostream &s, Polynomial& p) {
 	const int* powers = p.getPowers();
 		
 	for (int i = 0; i < termCount; i++) {
-		s << coeffs[i] << " x^" << powers[i] << " ";
+		s << *(coeffs + i) << " x^" << powers[i] << " ";
 
 		if (i != termCount - 1) {
 			s << "+ ";
