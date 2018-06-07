@@ -1,6 +1,10 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
 
 class Polynomial{
+	friend ostream& operator << (ostream &s, Polynomial& p);
 private:
 	int termCount;
 	int * coeffs, * powers;
@@ -13,12 +17,15 @@ public:
 	
 	const int* const getCoeffs() const;
 	const int* const getPowers() const;
-	const int getTermCount();
+	const int getTermCount() const;
 
 	double evalAtPoint(double point);
 	Polynomial generateDerivative();
 	double findRoot(double start_point);
 
-	friend ostream& operator << (ostream &s, Polynomial& p);
+	Polynomial& operator + (const Polynomial& p);
+	Polynomial& operator * (const Polynomial& p);
+	Polynomial& operator * (double scalar);
+	
 };
 

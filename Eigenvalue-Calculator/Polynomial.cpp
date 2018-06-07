@@ -1,7 +1,6 @@
 #pragma once
 #include "stdafx.h"
 #include "Polynomial.h"
-#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -75,7 +74,7 @@ const int* const Polynomial::getPowers() const {
 	return powers;
 }
 
-const int Polynomial::getTermCount(){
+const int Polynomial::getTermCount() const{
 	return termCount;
 }
 
@@ -123,75 +122,74 @@ double Polynomial::findRoot(double start_point) {
 		/ generateDerivative().evalAtPoint(start_point));
 }
 
-	/*
-	Polynomial& operator + (const Polynomial& p) {
-		const int* pCoeffs = p.getCoeffs();
-		const int* pPowers = p.getPowers();
+	
+Polynomial& Polynomial::operator + (const Polynomial& p) {
+	const int* pCoeffs = p.getCoeffs();
+	const int* pPowers = p.getPowers();
+	const int pTermCount = p.getTermCount();
 
-		int* rCoeffs = new int[termCount];
-		int* rPowers = new int[termCount];
+	int* rCoeffs = new int[termCount + pTermCount];
+	int* rPowers = new int[termCount + pTermCount];
 
-		for (int i = 0; i < termCount; i++) {
-			for (int j = 0; j < termCount; j++) {
-				rCoeffs[k] = coeffs[i] * pCoeffs[j];
-				rPowers[k] = powers[i] + pPowers[j];
-				cout << rCoeffs[k] << " " << rPowers[k] << endl;
-			}
-		}
-
-		Polynomial* p2 = new Polynomial(termCount, rCoeffs, rPowers);
-		return (*p2);
+	for (int i = 0; i < termCount ; i++) {
+		rCoeffs[i] = coeffs[i];
+		rPowers[i] = powers[i];
 	}
+
+	for (int i = 0; i < pTermCount; i++) {
+		rCoeffs[termCount + i] = pCoeffs[i];
+		rPowers[termCount + i] = pPowers[i];
+	}
+
+	Polynomial* p2 = new Polynomial(termCount + pTermCount, rCoeffs, rPowers);
+	return (*p2);
+}
 	
 
-	Polynomial& operator * (const Polynomial& p) {
-		const int* pCoeffs = p.getCoeffs();
-		const int* pPowers = p.getPowers();
-		const int pTermCount = p.getTermCount();
+Polynomial& Polynomial::operator * (const Polynomial& p) {
+	const int* pCoeffs = p.getCoeffs();
+	const int* pPowers = p.getPowers();
+	const int pTermCount = p.getTermCount();
+	int* rCoeffs = new int[termCount * pTermCount];
+	int* rPowers = new int[termCount * pTermCount];
 
-		int* rCoeffs = new int[termCount * pTermCount];
-		int* rPowers = new int[termCount * pTermCount];
-
-		int k = 0;
-		for (int i = 0; i < termCount; i++, k++) {
-			for (int j = 0; j < pTermCount; j++, k++) {
-				rCoeffs[k] = coeffs[i] * pCoeffs[j];
-				rPowers[k] = powers[i] + pPowers[j];
-				cout << rCoeffs[k] << " " << rPowers[k] << endl;
-			}
+	int k = 0;
+	for (int i = 0; i < termCount; i++) {
+		for (int j = 0; j < pTermCount; j++, k++) {
+			rCoeffs[k] = coeffs[i] * pCoeffs[j];
+			rPowers[k] = powers[i] + pPowers[j];
 		}
-
-		Polynomial* p2 = new Polynomial(termCount * pTermCount, rCoeffs, rPowers);
-		return (*p2);
 	}
 
-	Polynomial& operator * (double scalar) {
+	Polynomial* p2 = new Polynomial(termCount * pTermCount, rCoeffs, rPowers);
+	return (*p2);
+}
 
-		int* rCoeffs = new int[termCount];
-		int* rPowers = new int[termCount];
+Polynomial& Polynomial::operator * (double scalar) {
 
-		for (int i = 0; i < termCount; i++) {
-			rPowers[i] = powers[i];
-			rCoeffs[i] = coeffs[i] * scalar;
-		}
+	int* rCoeffs = new int[termCount];
+	int* rPowers = new int[termCount];
 
-		Polynomial* p2 = new Polynomial(termCount, rCoeffs, rPowers);
-		return (*p2);
+	for (int i = 0; i < termCount; i++) {
+		rPowers[i] = powers[i];
+		rCoeffs[i] = coeffs[i] * scalar;
 	}
-*/
-	friend ostream& operator << (ostream &s, Polynomial& p) {
-		for (int i = 0; i < termCount; i++) {
-			s << coeffs[i] << " x^" << powers[i] << " ";
 
-			if (i != termCount - 1) {
-				s << "+ ";
-			}
+	Polynomial* p2 = new Polynomial(termCount, rCoeffs, rPowers);
+	return (*p2);
+}
+
+ostream& operator << (ostream &s, Polynomial& p) {
+	int termCount = p.getTermCount();
+	const int* coeffs = p.getCoeffs();
+	const int* powers = p.getPowers();
+		
+	for (int i = 0; i < termCount; i++) {
+		s << coeffs[i] << " x^" << powers[i] << " ";
+
+		if (i != termCount - 1) {
+			s << "+ ";
 		}
-
-		s << endl;
-
+	}
 		return s;
-	}
-	
-
-
+}
